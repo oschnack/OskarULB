@@ -11,9 +11,7 @@ using namespace std;
 string sanitize(string message){// Sanitize renvoie le message entré en full majuscule
   string res;
   int i = 0;
-  vector<char> test;
-  char c;
-  
+  vector<char> test;  
   for (char& c : message)
   {
     test.push_back(c);
@@ -92,25 +90,36 @@ else cerr << "Impossible d’ouvrir le fichier " << filename << endl;
 }
 
 int main(int argc, char *argv[]) {
-    string message;
-    int sens;
-    if (argc < 4) {
-        cout << "Utilisation: ./send G|D décalage fichier." << endl;
-        return 1;
-    }
-    if (strcmp(argv[1], "G") != 0 && strcmp(argv[1], "D") != 0){
-        cout << "Le premier argument doit être G ou D, " << argv[1] << " est incorrect." << endl;
-        return 1;
-    }
-    bool rightShift = strcmp(argv[1], "D") == 0;
-    int shift = atoi(argv[2]);
-    string filename = argv[3];
-    cout <<"test " << argv[1] <<  " " << shift <<" via " << filename << endl;
-    cout << "Communication chiffrée avec César " << argv[1] <<  " " << shift <<" via " << filename << endl;
+  string message;
+  string filename;
+  char cond = 'y';
+  int shift;
+  int sens;
+  bool rightShift;
+  if (argc < 4) {
+    cout << "Utilisation: ./send G|D décalage fichier." << endl;
+      return 1;
+  }
+  if (strcmp(argv[1], "G") != 0 && strcmp(argv[1], "D") != 0){
+    cout << "Le premier argument doit être G ou D, " << argv[1] << " est incorrect." << endl;
+      return 1;
+  }
+  rightShift = strcmp(argv[1], "D") == 0;
+  shift = atoi(argv[2]);
+  filename = argv[3];
+  cout <<"test " << argv[1] <<  " " << shift <<" via " << filename << endl;
+  cout << "Communication chiffrée avec César " << argv[1] <<  " " << shift <<" via " << filename << endl;
+  sens = rightShift;
+  while (cond == 'y')
+  {
     cout << "Votre message: ";
+    cin.ignore();
     getline(cin, message);  //Entrée du message
-    sens = rightShift;
     send(message, sens, shift);
-    return 0;
+    cin.clear();
+    cout << "Voulez - vous continuer à envoyer des messages? " << "y ou n" << endl;
+    cin>> cond;
+  }
+  return 0;
 }
 
