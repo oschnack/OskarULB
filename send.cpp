@@ -101,8 +101,7 @@ int main(int argc, char *argv[]) {
 
 
 
-  if (strcmp(argv[1], "Enigma") == 0){// apres avoir fini Enigma.cpp terminer la boucle While
-  //check si ca fonctionne et investiguer sur-> "error: linker command failed with exit code 1 (use -v to see invocation"
+  if (strcmp(argv[1], "Enigma") == 0){
     cout << "Communication chiffrée avec Enigma via " << argv[2] <<endl;
 
     filename = argv[2];
