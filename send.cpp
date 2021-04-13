@@ -106,11 +106,12 @@ int main(int argc, char *argv[]) {
     cout << "Communication chiffrée avec Enigma via " << argv[2] <<endl;
 
     filename = argv[2];
+
+    
     while (cond == 'y')
   {
     cout << "Votre message: ";
     getline(cin, message);
-    cout << message << '/' << sanitize(message) <<"sortie sani" << endl;
     char* code = const_cast<char*>(sanitize(message).c_str());//adaptation au bon type pour passer dans Enigma
     string encrypted(enigma(code));
     send(encrypted,filename);//Envoie + cryptage du message
