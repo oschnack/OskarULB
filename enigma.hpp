@@ -8,6 +8,7 @@ using namespace std;
 #ifndef ENIGMA_HPP
 #define ENIGMA_HPP
 
-char* enigma(char* message);
+extern "C" char* enigma(char* message);
 
 #endif
+
